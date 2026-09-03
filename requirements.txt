@@ -1,0 +1,4 @@
+gradio
+httpx
+groq
+python-dotenv

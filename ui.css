@@ -1,0 +1,420 @@
+/* ==========================================================================
+   Jira / Partian Design System Theme for Hotel Booking Assistant
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Charlie+Text:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  /* Partian Official Color Tokens */
+  --jira-blue: #0C66E4;
+  --jira-blue-hover: #0052CC;
+  --jira-blue-subtle: #E9F2FF;
+  --jira-navy: #172B4D;
+  --jira-text-subtle: #44546F;
+  --jira-text-muted: #626F86;
+  --jira-bg-app: #F7F8F9;
+  --jira-surface: #FFFFFF;
+  --jira-border: #DFE1E6;
+  --jira-border-subtle: #EBECF0;
+  --jira-hover: #091E420F;
+  
+  /* Status Colors */
+  --jira-green-bg: #DFFCF0;
+  --jira-green-text: #216E4E;
+  --jira-purple-bg: #F3F0FF;
+  --jira-purple-text: #6554C0;
+  --jira-orange-bg: #FFF7D6;
+  --jira-orange-text: #7F5F01;
+  --jira-red-bg: #FFEDEB;
+  --jira-red-text: #AE2E24;
+
+  --jira-radius: 4px;
+  --jira-radius-card: 6px;
+  --jira-radius-pill: 9999px;
+  --jira-shadow-card: 0 1px 1px rgba(9, 30, 66, 0.25), 0 0 1px rgba(9, 30, 66, 0.31);
+  --jira-shadow-elevated: 0 4px 8px -2px rgba(9, 30, 66, 0.25), 0 0 1px rgba(9, 30, 66, 0.31);
+}
+
+/* Base styling */
+body, .gradio-container {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif !important;
+  background-color: var(--jira-bg-app) !important;
+  color: var(--jira-navy) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.gradio-container {
+  max-width: 1360px !important;
+  margin: 0 auto !important;
+  padding: 0 20px 40px !important;
+}
+
+/* ── Top Jira Navigation Header ────────────────────────────────────────── */
+.jira-top-navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #FFFFFF;
+  border-bottom: 1px solid var(--jira-border);
+  padding: 10px 24px;
+  margin: 0 -20px 20px -20px;
+  box-shadow: 0 1px 2px rgba(9, 30, 66, 0.08);
+}
+
+.jira-nav-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.jira-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--jira-navy);
+  letter-spacing: -0.01em;
+}
+
+.jira-logo-icon {
+  background: var(--jira-blue);
+  color: white;
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.jira-breadcrumbs {
+  font-size: 0.85rem;
+  color: var(--jira-text-muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.jira-breadcrumbs strong {
+  color: var(--jira-navy);
+  font-weight: 600;
+}
+
+.jira-nav-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.jira-user-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--jira-border-subtle);
+  padding: 4px 10px;
+  border-radius: var(--jira-radius-pill);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--jira-navy);
+}
+
+.jira-avatar {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--jira-blue);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+}
+
+/* ── Jira Filter & Control Toolbar ─────────────────────────────────────── */
+.jira-filter-bar {
+  background: #FFFFFF;
+  border: 1px solid var(--jira-border);
+  border-radius: var(--jira-radius-card);
+  padding: 16px 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 2px rgba(9, 30, 66, 0.05);
+}
+
+.jira-board-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.jira-board-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--jira-navy);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.jira-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 3px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.jira-badge-blue { background: var(--jira-blue-subtle); color: var(--jira-blue); }
+.jira-badge-green { background: var(--jira-green-bg); color: var(--jira-green-text); }
+.jira-badge-purple { background: var(--jira-purple-bg); color: var(--jira-purple-text); }
+.jira-badge-orange { background: var(--jira-orange-bg); color: var(--jira-orange-text); }
+
+/* Inputs styling Jira-style */
+input, select, textarea, .gr-textbox input, .gr-number input {
+  background-color: #FAFBFC !important;
+  border: 1.5px solid #DFE1E6 !important;
+  border-radius: 3px !important;
+  color: var(--jira-navy) !important;
+  font-size: 0.88rem !important;
+  padding: 7px 10px !important;
+  transition: background-color 0.2s ease, border-color 0.2s ease !important;
+  box-shadow: inset 0 1px 2px rgba(9, 30, 66, 0.05) !important;
+}
+
+input:hover, select:hover, textarea:hover {
+  background-color: #EBECF0 !important;
+  border-color: #C1C7D0 !important;
+}
+
+input:focus, select:focus, textarea:focus {
+  background-color: #FFFFFF !important;
+  border-color: var(--jira-blue) !important;
+  outline: 2px solid #85B8FF !important;
+}
+
+label, .block label, .gr-input-label {
+  color: var(--jira-text-subtle) !important;
+  font-size: 0.76rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.03em !important;
+  margin-bottom: 4px !important;
+}
+
+/* Primary Button (Jira Blue Solid) */
+button.primary, button[variant="primary"], .gr-button-primary {
+  background-color: var(--jira-blue) !important;
+  color: #FFFFFF !important;
+  border: none !important;
+  border-radius: 3px !important;
+  font-weight: 600 !important;
+  font-size: 0.92rem !important;
+  padding: 9px 18px !important;
+  cursor: pointer !important;
+  box-shadow: 0 1px 2px rgba(9, 30, 66, 0.2) !important;
+  transition: background-color 0.1s ease !important;
+}
+
+button.primary:hover, button[variant="primary"]:hover {
+  background-color: var(--jira-blue-hover) !important;
+}
+
+/* ── Jira Kanban Columns & Cards ───────────────────────────────────────── */
+.jira-kanban-board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 10px;
+}
+
+.jira-column {
+  background-color: #F4F5F7;
+  border-radius: var(--jira-radius-card);
+  padding: 12px;
+  min-height: 380px;
+}
+
+.jira-column-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 6px 10px 6px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--jira-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border-bottom: 2px solid #EBECF0;
+  margin-bottom: 12px;
+}
+
+.jira-column-count {
+  background: #DFE1E6;
+  color: var(--jira-navy);
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: var(--jira-radius-pill);
+}
+
+.jira-issue-card {
+  background-color: #FFFFFF;
+  border-radius: 4px;
+  padding: 12px 14px;
+  margin-bottom: 10px;
+  box-shadow: var(--jira-shadow-card);
+  border: 1px solid rgba(9, 30, 66, 0.08);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  cursor: pointer;
+}
+
+.jira-issue-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--jira-shadow-elevated);
+}
+
+.jira-issue-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.jira-issue-key {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--jira-blue);
+  background: var(--jira-blue-subtle);
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+.jira-issue-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--jira-navy);
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.jira-issue-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  color: var(--jira-text-subtle);
+  margin-bottom: 10px;
+}
+
+.jira-issue-meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  background: #F4F5F7;
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+.jira-issue-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 8px;
+  border-top: 1px solid var(--jira-border-subtle);
+}
+
+.jira-price-tag {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #00875A;
+}
+
+.jira-book-btn {
+  background: #0C66E4;
+  color: #FFFFFF !important;
+  text-decoration: none;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 3px;
+  transition: background 0.1s;
+}
+
+.jira-book-btn:hover {
+  background: #0052CC;
+}
+
+/* ── Jira Smart AI Recommendation Panel ────────────────────────────────── */
+.jira-ai-panel {
+  background: #FFFFFF;
+  border: 1px solid #C0D8FD;
+  border-left: 4px solid var(--jira-blue);
+  border-radius: var(--jira-radius-card);
+  padding: 16px 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 3px rgba(9, 30, 66, 0.08);
+}
+
+.jira-ai-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 0.92rem;
+  color: var(--jira-blue);
+  margin-bottom: 8px;
+}
+
+.jira-ai-content {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--jira-navy);
+}
+
+/* ── Jira Data Table ───────────────────────────────────────────────────── */
+[data-testid="dataframe"], .gr-dataframe {
+  background: #FFFFFF !important;
+  border: 1px solid var(--jira-border) !important;
+  border-radius: var(--jira-radius-card) !important;
+  box-shadow: var(--jira-shadow-card) !important;
+}
+
+thead th {
+  background-color: #F4F5F7 !important;
+  color: var(--jira-text-muted) !important;
+  font-size: 0.75rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.04em !important;
+  border-bottom: 2px solid var(--jira-border) !important;
+  padding: 8px 12px !important;
+}
+
+tbody tr {
+  border-bottom: 1px solid var(--jira-border-subtle) !important;
+}
+
+tbody tr:hover {
+  background-color: #F4F5F7 !important;
+}
+
+tbody td {
+  font-size: 0.86rem !important;
+  color: var(--jira-navy) !important;
+  padding: 10px 12px !important;
+}
+
+/* ── Responsive ────────────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .jira-kanban-board {
+    grid-template-columns: 1fr;
+  }
+}

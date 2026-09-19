@@ -8,6 +8,7 @@ import os
 import json
 import pandas as pd
 import gradio as gr
+from fastapi import FastAPI
 from gradio.themes import Base
 from dotenv import load_dotenv
 from groq import Groq
@@ -267,7 +268,7 @@ def find_hotels(destination, check_in, check_out, min_price, max_price, adults, 
 
 
 # ─── UI Layout (Jira Enterprise Style) ──────────────────────────────────────
-with gr.Blocks() as demo:
+with gr.Blocks(title="Partian Hotels · Jira Work Management") as demo:
 
     # ── Top Jira Navigation Bar ───────────────────────────────────────────
     gr.HTML("""
@@ -414,6 +415,19 @@ with gr.Blocks() as demo:
         RapidAPI Hotels Integration
     </div>
     """)
+
+
+# ── Export top-level variables for WSGI / ASGI / Serverless runners (Vercel, Render, Spaces) ─
+app = gr.mount_gradio_app(
+    FastAPI(title="Partian Hotels · Jira Work Management"),
+    demo,
+    path="/",
+    theme=jira_theme,
+    css=css,
+)
+application = app
+handler = app
+
 
 if __name__ == "__main__":
     import os

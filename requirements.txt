@@ -1,4 +1,7 @@
 gradio
+fastapi
+uvicorn
+pandas
 httpx
 groq
 python-dotenv

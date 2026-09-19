@@ -91,17 +91,20 @@ def _render_jira_kanban_cards(hotels: list[dict], destination: str) -> str:
             badge_class = "jira-badge-purple"
             badge_text = "LUXURY"
             priority_icon = "🔺 Highest"
+            tier_class = "jira-card-luxury"
         elif stars_count == 4:
             badge_class = "jira-badge-blue"
             badge_text = "PREMIUM"
             priority_icon = "🔸 High"
+            tier_class = "jira-card-premium"
         else:
             badge_class = "jira-badge-green"
             badge_text = "VALUE"
             priority_icon = "🔹 Standard"
+            tier_class = "jira-card-value"
 
         card_html = f"""
-        <div class="jira-issue-card">
+        <div class="jira-issue-card {tier_class}">
             <div class="jira-issue-top">
                 <span class="jira-issue-key">{issue_key}</span>
                 <span class="jira-badge {badge_class}">{badge_text}</span>
@@ -115,7 +118,7 @@ def _render_jira_kanban_cards(hotels: list[dict], destination: str) -> str:
             <div class="jira-issue-footer">
                 <div>
                     <span class="jira-price-tag">${price}</span>
-                    <span style="font-size:0.72rem;color:#626F86;"> / night</span>
+                    <span style="font-size:0.72rem;color:#6E7681;"> / night</span>
                 </div>
                 <a href="{url}" target="_blank" class="jira-book-btn">Book Ticket ➔</a>
             </div>
@@ -137,7 +140,7 @@ def _render_jira_kanban_cards(hotels: list[dict], destination: str) -> str:
                 <span>🌟 5-Star Luxury</span>
                 <span class="jira-column-count">{len(luxury_cards)}</span>
             </div>
-            {''.join(luxury_cards) if luxury_cards else "<div style='color:#8993A4;font-size:0.8rem;text-align:center;padding:20px;'>No 5-star items</div>"}
+            {''.join(luxury_cards) if luxury_cards else '<div class="jira-empty-state"><div class="jira-empty-state-icon">🌟</div><div class="jira-empty-state-title">No Luxury Items</div><div class="jira-empty-state-desc">No 5-star hotels matched your search criteria</div></div>'}
         </div>
         <!-- Column 2: Premium -->
         <div class="jira-column">
@@ -145,7 +148,7 @@ def _render_jira_kanban_cards(hotels: list[dict], destination: str) -> str:
                 <span>💎 4-Star Premium</span>
                 <span class="jira-column-count">{len(premium_cards)}</span>
             </div>
-            {''.join(premium_cards) if premium_cards else "<div style='color:#8993A4;font-size:0.8rem;text-align:center;padding:20px;'>No 4-star items</div>"}
+            {''.join(premium_cards) if premium_cards else '<div class="jira-empty-state"><div class="jira-empty-state-icon">💎</div><div class="jira-empty-state-title">No Premium Items</div><div class="jira-empty-state-desc">No 4-star hotels matched your search criteria</div></div>'}
         </div>
         <!-- Column 3: Value -->
         <div class="jira-column">
@@ -153,7 +156,7 @@ def _render_jira_kanban_cards(hotels: list[dict], destination: str) -> str:
                 <span>🎯 3-Star Smart Value</span>
                 <span class="jira-column-count">{len(value_cards)}</span>
             </div>
-            {''.join(value_cards) if value_cards else "<div style='color:#8993A4;font-size:0.8rem;text-align:center;padding:20px;'>No 3-star items</div>"}
+            {''.join(value_cards) if value_cards else '<div class="jira-empty-state"><div class="jira-empty-state-icon">🎯</div><div class="jira-empty-state-title">No Value Items</div><div class="jira-empty-state-desc">No 3-star hotels matched your search criteria</div></div>'}
         </div>
     </div>
     """
@@ -377,8 +380,12 @@ with gr.Blocks() as demo:
         with gr.TabItem("📋 Kanban Board View"):
             board_output = gr.HTML(
                 value="""
-                <div style='padding:40px;text-align:center;color:#626F86;'>
-                    Click <strong>⚡ Find & Dispatch Hotels to Board</strong> above to populate Jira Issue cards across tier columns.
+                <div class="jira-empty-state" style="padding:60px 24px;">
+                    <div class="jira-empty-state-icon">🗂️</div>
+                    <div class="jira-empty-state-title">Board is Empty</div>
+                    <div class="jira-empty-state-desc">
+                        Click <strong>⚡ Find & Dispatch Hotels to Board</strong> above to search hotels and populate Jira Issue cards across tier columns.
+                    </div>
                 </div>
                 """
             )
@@ -401,14 +408,7 @@ with gr.Blocks() as demo:
 
     # ── Footer ────────────────────────────────────────────────────────────
     gr.HTML("""
-    <div style="
-        text-align:center;
-        margin-top:32px;
-        padding:16px;
-        color:#626F86;
-        font-size:0.75rem;
-        border-top:1px solid #EBECF0;
-    ">
+    <div class="jira-footer">
         Partian Jira Design System &nbsp;·&nbsp;
         Groq AI (gpt-oss-120b) &nbsp;·&nbsp;
         RapidAPI Hotels Integration
@@ -416,9 +416,11 @@ with gr.Blocks() as demo:
     """)
 
 if __name__ == "__main__":
+    import os
+    port = int(os.getenv("GRADIO_SERVER_PORT", "7860"))
     demo.launch(
         server_name="0.0.0.0",
-        server_port=7860,
+        server_port=port,
         show_error=True,
         css=css,
         theme=jira_theme,
